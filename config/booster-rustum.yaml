@@ -1,0 +1,24 @@
+sign_uki: true
+remove_leftovers: true
+cmdline_per_kernel: false
+splash: /usr/share/systemd/bootctl/splash-arch.bmp
+
+generate_fallback: false
+initramfs_config:
+  default_types: [default, fallback]
+  linux: [default, fallback]
+  linux-lts: [fallback]
+  linux-zen: [default]
+
+efistub: false
+efistub_config:
+  default_entry: linux
+  append_entries: true
+
+sbsign: false
+sbsign_config:
+  pcr_banks: sha1,sha256,sha384,sha512
+  pcr_private_key: /path/to/pcr-private-key.pem
+  pcr_public_key: /path/to/pcr-public-key.pem
+  secureboot_private_key: /path/to/DB.key
+  secureboot_certificate: /path/to/DB.crt
