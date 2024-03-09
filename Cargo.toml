@@ -7,8 +7,12 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.5.1", features = ["derive"] }
+color-eyre = "0.6.2"
 serde = { version = "1.0.197", features = ["derive"] }
 serde_yaml = "0.9.32"
+
+[profile.dev.package.backtrace]
+opt-level = 3
 
 [lints.rust]
 unsafe_code = "forbid"

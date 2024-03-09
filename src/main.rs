@@ -1,4 +1,5 @@
 use clap::Parser;
+use color_eyre::eyre::Result;
 use serde::{Deserialize, Deserializer, Serialize};
 use std::collections::HashMap;
 use std::fs;
@@ -89,11 +90,14 @@ where
     Ok(Dictionary { inner: buf })
 }
 
-fn main() {
+#[allow(clippy::unnecessary_wraps)]
+fn main() -> Result<()> {
+    color_eyre::install()?;
     Args::parse();
 
     let file =
         fs::File::open("config/booster-rustum.yaml").expect("Couldn't open booster-rustum.yaml");
     let yaml: Config = serde_yaml::from_reader(file).expect("Cannot serialize");
     println!("Deserialize =\n{yaml:?}");
+    Ok(())
 }
